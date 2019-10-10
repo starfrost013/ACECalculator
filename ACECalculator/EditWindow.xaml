@@ -1,0 +1,16 @@
+﻿<Window x:Class="ACECalculator.EditStorm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ACECalculator"
+        mc:Ignorable="d"
+        Title="Edit Storm Intensity" Height="190.428" Width="800" FontSize="36">
+    <Grid>
+        <Label x:Name="EditStormIntensityLabel" Content="Edit Storm Intensity" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="62" Width="409"/>
+        <Label x:Name="IntensityLabel" Content="Intensity:" HorizontalAlignment="Left" Height="34" Margin="12,62,0,0" VerticalAlignment="Top" Width="97" FontSize="18"/>
+        <TextBox x:Name="IntensityTextBox" HorizontalAlignment="Left" Height="30" Margin="114,66,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="295" FontSize="18"/>
+        <Button x:Name="OKButton" Content="OK" HorizontalAlignment="Left" Margin="700,108,0,0" VerticalAlignment="Top" Width="75" FontSize="16" Click="OKButton_Click"/>
+
+    </Grid>
+</Window>
