@@ -39,7 +39,7 @@ namespace ACECalculator
                 for (int i = 0; i < MnWindow.StormIntensities.Items.Count; i++)
                 {
                     StormIntensityNode sin = (StormIntensityNode)MnWindow.StormIntensities.Items[i]; // subtract 6 each time.
-                    sin.DateTime = MnWindow.CurrentDateTime.ToString();
+                    sin.DateTime = MnWindow.CurrentDateTime;
                     MnWindow.CurrentDateTime = MnWindow.CurrentDateTime.AddHours(6);
                     addBackFactor += 6;
 

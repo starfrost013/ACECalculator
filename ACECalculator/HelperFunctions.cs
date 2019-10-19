@@ -15,11 +15,10 @@ namespace ACECalculator
             switch (mode)
             {
                 case 0:
-                    
+
                     ace = Math.Pow(intensity, 2) / 10000;
                     return ace;
                 case 1:
-                    
                     ace = Math.Pow(RoundNearest(intensity / 1.15078, 5), 2) / 10000;
                     return ace;
                 default:
@@ -29,13 +28,7 @@ namespace ACECalculator
 
         private static double RoundNearest(double raw, double n)
         {
-            var r = Math.Round(raw, 1);
-
-            if (!(Math.Abs(r % 1) <= double.Epsilon * 100)) // if the absolute value of r modulus 1 is more than the smallest 
-            {
-                return Math.Round(r * 1 / n) * n;
-            }
-            return r;
+            return (Math.Round(raw / n)) * n;
         }
 
         public void SetDateTimeVisibility(bool visible)
@@ -76,7 +69,7 @@ namespace ACECalculator
                 double t = 0;
 
                 
-                StormIntensityNode node = new StormIntensityNode { DateTime = CurrentDateTime.ToString(), Intensity = intensity, ACE = ace, Total = t };
+                StormIntensityNode node = new StormIntensityNode { DateTime = CurrentDateTime, Intensity = intensity, ACE = ace, Total = t };
                 CurrentDateTime = CurrentDateTime.AddHours(6);
 
                 if (IntensityMeasure == 0)

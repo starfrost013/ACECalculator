@@ -144,6 +144,7 @@ namespace ACECalculator
                         StormIntensityNode sin = (StormIntensityNode)StormIntensities.Items[i];
 
                         sin.Total -= tempACE;
+                        sin.DateTime = sin.DateTime.AddHours(-6); // yeah
                     }
                     StormIntensities.Items.Refresh();
                 }
@@ -243,7 +244,7 @@ namespace ACECalculator
                             Lines.Add($"{sin.DateTime} {sin.Intensity.ToString()} KT - ACE: {sin.ACE} Total: {sin.Total}");
                             continue;
                         case 1: // The user selected mph.
-                            Lines.Add($"{sin.DateTime} {sin.Intensity.ToString()} KT - ACE: {sin.ACE} Total: {sin.Total}");
+                            Lines.Add($"{sin.DateTime} {sin.Intensity.ToString()} MPH - ACE: {sin.ACE} Total: {sin.Total}");
                             continue;
                     }
                 }
@@ -266,7 +267,7 @@ namespace ACECalculator
 
     public class StormIntensityNode
     {
-        public string DateTime { get; set; }
+        public DateTime DateTime { get; set; }
         public double Intensity { get; set; }
         public double ACE { get; set; }
         public double Total { get; set; }
