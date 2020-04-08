@@ -46,7 +46,7 @@ namespace ACECalculator
 
         private void ItCalculatesAce_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ItCalculatesAce.Text = "You're banned."; 
+            ItCalculatesAce.Text = "You're banned!"; 
         }
 
         private void AddStorm_Click(object sender, RoutedEventArgs e)
@@ -159,7 +159,7 @@ namespace ACECalculator
 
         private void SinglePointMode_Click(object sender, RoutedEventArgs e)
         {
-            if (SinglePointMode.IsChecked == true)
+            if (SinglePointMode.IsChecked)
             {
                 SinglePoint = 1;
             }
@@ -182,7 +182,7 @@ namespace ACECalculator
             SetDateTimeVisibility(StormMenu_SetStartDate.IsChecked);
             // temporarily commented out for testing 
 
-            if (StormMenu_SetStartDate.IsChecked == true)
+            if (StormMenu_SetStartDate.IsChecked)
             {
                 SetStartWindow setStartWindow = new SetStartWindow(this);
                 setStartWindow.ShowDialog();
@@ -225,6 +225,8 @@ namespace ACECalculator
                 }
 
                 string[] Lines_Array = Lines.ToArray();
+                Clipboard.SetText(new StringBuilder().Append(Lines_Array).ToString());
+
                 File.WriteAllLines(saveFileDialog.FileName, Lines_Array);
             }
             catch (IOException)
@@ -244,9 +246,11 @@ namespace ACECalculator
             DeleteSingleItem();
         }
 
-        private void FileMenu_Export_Timeline_Click(object sender, RoutedEventArgs e)
+        private void StormIntensities_RightClick_Edit_Click(object sender, RoutedEventArgs e)
         {
-
+            EditStorm EStorm = new EditStorm(this); // my old code was so ugly lol
+            EStorm.Owner = this;
+            EStorm.Show(); 
         }
     }
 }

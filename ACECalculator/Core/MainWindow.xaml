@@ -22,7 +22,8 @@
             </ListView.View>
             <ListView.ContextMenu>
                 <ContextMenu>
-                    <MenuItem x:Name="StormIntensities_RightClick_Delete" Header="Delete Selected" Click="StormIntensities_RightClick_Delete_Click"></MenuItem>
+                    <MenuItem x:Name="StormIntensities_RightClick_Edit" Header="Edit" Click="StormIntensities_RightClick_Edit_Click"></MenuItem>
+                    <MenuItem x:Name="StormIntensities_RightClick_Delete" Header="Delete" Click="StormIntensities_RightClick_Delete_Click"></MenuItem>
                 </ContextMenu>
             </ListView.ContextMenu>
         </ListView>
