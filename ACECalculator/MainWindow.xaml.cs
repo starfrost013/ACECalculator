@@ -46,7 +46,7 @@ namespace ACECalculator
 
         private void ItCalculatesAce_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ItCalculatesAce.Text = "Click!"; 
+            ItCalculatesAce.Text = "You're banned."; 
         }
 
         private void AddStorm_Click(object sender, RoutedEventArgs e)
@@ -116,78 +116,19 @@ namespace ACECalculator
         {
             if (StormIntensities.SelectedIndex == -1) // do we not have anything selected?
             {
-                MessageBox.Show("Error: Cannot delete something that is not selected.", "ACE Calculator", MessageBoxButton.OK, MessageBoxImage.Warning); // show a warning box
+                MessageBox.Show("Error: Cannot delete a point if there are no points selected!", "ACE Calculator", MessageBoxButton.OK, MessageBoxImage.Warning); // show a warning box
                 return; // don't do anything
             }
 
-            int s = 0;
-            double tempACE = 0;
-            bool deleted = false;
-            
-            // loop through everything
-            for (int i = 0; i < StormIntensities.Items.Count; i++)
+            if (StormIntensities.SelectedItems.Count > 1)
             {
-                //V1.4: new version - support deleting multiple items
-                if (StormIntensities.SelectedItems.Count > 1)
-                {
-                    DeleteMultipleItems(StormIntensities.SelectedItems); // delete multiple items v1.4 only
-                }
-
-                if (StormIntensities.SelectedIndex == i) // if it is the same as the selected index
-                {
-                    s = StormIntensities.SelectedIndex;
-                    StormIntensityNode sinTemp = (StormIntensityNode)StormIntensities.Items[i]; // cast...
-                    tempACE = sinTemp.ACE;
-                    deleted = true;
-                    StormIntensities.Items.RemoveAt(i); // remove the item at the selected index. Yay.
-                    sinTemp = null;
-                }
-
-                if (deleted == true)
-                {
-                    if (i > s)
-                    {
-                        StormIntensityNode sin = (StormIntensityNode)StormIntensities.Items[i];
-
-                        sin.Total -= tempACE;
-                        sin.DateTime = sin.DateTime.AddHours(-6); // yeah
-                    }
-                    StormIntensities.Items.Refresh();
-                }
-
+                DeleteMultipleItems(StormIntensities.SelectedItems); // delete multiple items v1.4 only
+            }
+            else
+            {
+                DeleteSingleItem(); 
             }
         }
-
-        private void DeleteMultipleItems(System.Collections.IList ItemsToRemove)
-        {
-            //v1.4 only
-            double tempACE = 0;
-
-            for (int i = 0; i < ItemsToRemove.Count - 1; i++)
-            {
-                StormIntensityNode SNode_ToBeDeleted = (StormIntensityNode)ItemsToRemove[i];
-
-                StormIntensities.Items.Remove(SNode_ToBeDeleted);
-
-                for (int j = 0; j < StormIntensities.Items.Count - 1; j++)
-                {
-                    if (j > i)
-                    {
-                        StormIntensityNode SNode_Change = (StormIntensityNode)StormIntensities.Items[j]; // the node to change
-                        SNode_Change.Total -= tempACE;
-
-                        if (SNode_Change.DateTime.Date != new DateTime(0001, 1, 1))
-                        {
-                            SNode_Change.DateTime = SNode_Change.DateTime.AddHours(-6); // yeah
-                        }
-                    }
-                }
-            }
-        }
-        
-        // Credit to some guy on stackoverflow, slightly modified by me.
-
-
 
         private void HelpMenu_About_Click(object sender, RoutedEventArgs e)
         {
@@ -297,13 +238,10 @@ namespace ACECalculator
                 return;
             }
         }
-    }
 
-    public class StormIntensityNode
-    {
-        public DateTime DateTime { get; set; }
-        public double Intensity { get; set; }
-        public double ACE { get; set; }
-        public double Total { get; set; }
+        private void StormIntensities_RightClick_Delete_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteSingleItem();
+        }
     }
 }

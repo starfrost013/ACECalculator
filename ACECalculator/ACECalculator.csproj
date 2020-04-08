@@ -55,12 +55,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DeletePoint.cs" />
     <Compile Include="EditWindow.xaml.cs">
       <DependentUpon>EditWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="SetStartWindow.xaml.cs">
       <DependentUpon>SetStartWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StormIntensityNode.cs" />
     <Page Include="AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

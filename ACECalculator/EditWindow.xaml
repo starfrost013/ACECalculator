@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ACECalculator"
         mc:Ignorable="d"
-        Title="Edit Storm Intensity" Height="190.428" Width="641" FontSize="36">
+        Title="Edit Storm Intensity" Height="190.428" Width="468" FontSize="36">
     <Grid>
         <Label x:Name="EditStormIntensityLabel" Content="Edit Storm Intensity" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="62" Width="409"/>
         <Label x:Name="IntensityLabel" Content="Intensity:" HorizontalAlignment="Left" Height="34" Margin="11,68,0,0" VerticalAlignment="Top" Width="97" FontSize="18"/>
-        <TextBox x:Name="IntensityTextBox" HorizontalAlignment="Left" Height="30" Margin="113,72,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="306" FontSize="18"/>
-        <Button x:Name="OKButton" Content="OK" HorizontalAlignment="Left" Margin="537,114,0,0" VerticalAlignment="Top" Width="75" FontSize="16" Click="OKButton_Click" RenderTransformOrigin="-0.467,0.72"/>
+        <TextBox x:Name="IntensityTextBox" HorizontalAlignment="Left" Height="30" Margin="113,72,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="205" FontSize="18"/>
+        <Button x:Name="OKButton" Content="OK" HorizontalAlignment="Left" Margin="362,113,0,0" VerticalAlignment="Top" Width="75" FontSize="16" Click="OKButton_Click" RenderTransformOrigin="-0.467,0.72"/>
 
     </Grid>
 </Window>
