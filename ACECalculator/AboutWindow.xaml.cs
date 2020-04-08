@@ -36,7 +36,13 @@ namespace ACECalculator
 
         private void Version_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Version.Content = "sad";
+            Version.Content = "free! - coming soon";
+        }
+
+        // new in v1.4: actually make this work - 2020-04-08
+        private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
         }
     }
 }

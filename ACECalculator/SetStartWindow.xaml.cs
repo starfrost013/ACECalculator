@@ -32,10 +32,23 @@ namespace ACECalculator
         {
             try
             {
-                DateTime dateTime = new DateTime(Convert.ToInt32(YearBox.Text), Convert.ToInt32(MonthBox.Text), Convert.ToInt32(DateBox.Text), Convert.ToInt32(TimeBox.Text), 0, 0);
-                MnWindow.CurrentDateTime = dateTime;
+                // V1.4: If it ain't broke, don't fix it! (build 222)
+                
+                if (Ver14_DatePicker.SelectedDate == null)
+                {
+                    MessageBox.Show("Error: You must select a date!", "ACE Calculator", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
 
-                int addBackFactor = 0;
+                MnWindow.CurrentDateTime = (DateTime)Ver14_DatePicker.SelectedDate;
+
+                // add the time
+
+                MnWindow.CurrentDateTime.AddHours(Convert.ToInt32(Ver14_HoursBox.Text));
+                MnWindow.CurrentDateTime.AddMinutes(Convert.ToInt32(Ver14_HoursBox.Text));
+
+
+                int addBackFactor = 0; 
                 for (int i = 0; i < MnWindow.StormIntensities.Items.Count; i++)
                 {
                     StormIntensityNode sin = (StormIntensityNode)MnWindow.StormIntensities.Items[i]; // subtract 6 each time.
@@ -44,6 +57,7 @@ namespace ACECalculator
                     addBackFactor += 6;
 
                 }
+
                 MnWindow.StormIntensities.Items.Refresh();
             }
             catch (ArgumentOutOfRangeException)
@@ -54,9 +68,11 @@ namespace ACECalculator
             catch (FormatException)
             {
                 MessageBox.Show("Error: An invalid date or time was entered.", "ACE Calculator", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return; 
             }
 
             this.Close(); // closes the window which implicitly destroys the class and thus makes it not unsafe hopefully!
         }
+
     }
 }

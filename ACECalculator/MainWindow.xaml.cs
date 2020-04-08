@@ -46,7 +46,7 @@ namespace ACECalculator
 
         private void ItCalculatesAce_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ItCalculatesAce.Content = "Yes, it does."; 
+            ItCalculatesAce.Text = "Click!"; 
         }
 
         private void AddStorm_Click(object sender, RoutedEventArgs e)
@@ -69,7 +69,7 @@ namespace ACECalculator
             }
 
             StormMenu_IntensityMph.IsChecked = false;
-            EnterStormIntensityLabel.Content = "Enter storm intensity... (in kt)"; // change the content of the enter intensity label to reflect the new measurement of wind speed.
+            EnterStormIntensityLabel.Text = "Enter storm intensity (in kt)..."; // change the content of the enter intensity label to reflect the new measurement of wind speed.
             // convert everything
 
             foreach (StormIntensityNode sin in StormIntensities.Items)
@@ -94,12 +94,12 @@ namespace ACECalculator
             }
 
             StormMenu_IntensityKt.IsChecked = false;
-            EnterStormIntensityLabel.Content = "Enter storm intensity... (in mph)"; // change the content of the enter intensity label to reflect the new measurement of wind speed.
+            EnterStormIntensityLabel.Text = "Enter storm intensity (in mph)..."; // change the content of the enter intensity label to reflect the new measurement of wind speed.
 
             foreach (StormIntensityNode sin in StormIntensities.Items)
             {
                 sin.Intensity = sin.Intensity * 1.151;
-                sin.Intensity = RoundNearest(sin.Intensity, 5); // round it
+                sin.Intensity = RoundNearest(sin.Intensity, 5); // round it to the nearest 5mph/5kt
             }
 
             StormIntensities.Items.Refresh();

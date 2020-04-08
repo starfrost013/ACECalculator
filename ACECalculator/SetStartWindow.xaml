@@ -5,18 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ACECalculator"
         mc:Ignorable="d"
-        Title="Set storm start date" Height="310.579" Width="800">
+        Title="Set storm start date" Height="204.184" Width="429.183">
     <Grid>
         <Label x:Name="SetStormStartDate" Content="Set storm start date" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.382,-0.041" Height="61" Width="498" FontSize="36"/>
-        <Label x:Name="Year" Content="Year:" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.109,0.267" Height="38" Width="69" FontSize="18"/>
-        <Label x:Name="Month" Content="Month:" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.109,0.267" Height="38" Width="69" FontSize="18"/>
-        <Label x:Name="Date" Content="Date:" HorizontalAlignment="Left" Margin="10,152,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.109,0.267" Height="38" Width="69" FontSize="18"/>
-        <Label x:Name="Time" Content="Hour:" HorizontalAlignment="Left" Margin="10,190,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.109,0.267" Height="38" Width="69" FontSize="18"/>
-        <TextBox x:Name="YearBox" HorizontalAlignment="Left" Height="33" Margin="84,76,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="266" FontSize="18"/>
-        <TextBox x:Name="MonthBox" HorizontalAlignment="Left" Height="33" Margin="84,114,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="266" FontSize="18"/>
-        <TextBox x:Name="DateBox" HorizontalAlignment="Left" Height="33" Margin="84,152,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="266" FontSize="18"/>
-        <TextBox x:Name="TimeBox" HorizontalAlignment="Left" Height="33" Margin="84,195,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="266" FontSize="18"/>
-        <Button x:Name="OKButton" Content="OK" HorizontalAlignment="Left" Height="29" Margin="710,232,0,0" VerticalAlignment="Top" Width="63" Click="OKButton_Click"/>
+        <Button x:Name="OKButton" Content="OK" HorizontalAlignment="Left" Height="22" Margin="357,141,0,0" VerticalAlignment="Top" Width="54" Click="OKButton_Click"/>
+        <DatePicker x:Name="Ver14_DatePicker" HorizontalAlignment="Left" Margin="77,65,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="Ver14_Date" Text="Date:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.109,0.267" Height="26" Width="69" FontSize="18" Margin="19,65,0,0"/>
+        <TextBlock x:Name="Ver14_Time" Text="Time:" HorizontalAlignment="Left" Margin="19,91,0,0" VerticalAlignment="Top"  Height="28" Width="53" FontSize="18"/>
+        <TextBox x:Name="Ver14_HoursBox" HorizontalAlignment="Left" Height="23" Margin="77,94,0,56" TextWrapping="Wrap" Text="" Width="30" FontSize="18"/>
+        <TextBlock x:Name="Ver14_Colon" Text=":" HorizontalAlignment="Left" Margin="112,91,0,0" VerticalAlignment="Top"  Height="28" Width="5" FontSize="18"/>
+        <TextBox x:Name="Ver14_MinutesBox" HorizontalAlignment="Left" Height="23" Margin="122,94,0,56" TextWrapping="Wrap" Text="" Width="30" FontSize="18" RenderTransformOrigin="1.844,0.466" TextChanged="TextBox_Copy_TextChanged"/>
 
     </Grid>
 </Window>
