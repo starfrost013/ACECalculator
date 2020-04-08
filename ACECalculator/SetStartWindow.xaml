@@ -14,7 +14,7 @@
         <TextBlock x:Name="Ver14_Time" Text="Time:" HorizontalAlignment="Left" Margin="19,91,0,0" VerticalAlignment="Top"  Height="28" Width="53" FontSize="18"/>
         <TextBox x:Name="Ver14_HoursBox" HorizontalAlignment="Left" Height="23" Margin="77,94,0,56" TextWrapping="Wrap" Text="" Width="30" FontSize="18"/>
         <TextBlock x:Name="Ver14_Colon" Text=":" HorizontalAlignment="Left" Margin="112,91,0,0" VerticalAlignment="Top"  Height="28" Width="5" FontSize="18"/>
-        <TextBox x:Name="Ver14_MinutesBox" HorizontalAlignment="Left" Height="23" Margin="122,94,0,56" TextWrapping="Wrap" Text="" Width="30" FontSize="18" RenderTransformOrigin="1.844,0.466" TextChanged="TextBox_Copy_TextChanged"/>
+        <TextBox x:Name="Ver14_MinutesBox" HorizontalAlignment="Left" Height="23" Margin="122,94,0,56" TextWrapping="Wrap" Text="" Width="30" FontSize="18"/>
 
     </Grid>
 </Window>
