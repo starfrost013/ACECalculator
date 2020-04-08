@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ACECalculator"
         mc:Ignorable="d"
-        Title="Set storm start date" Height="204.184" Width="429.183">
+        Title="Set storm start date" Height="188.538" Width="429.183">
     <Grid>
-        <Label x:Name="SetStormStartDate" Content="Set storm start date" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.382,-0.041" Height="61" Width="498" FontSize="36"/>
-        <Button x:Name="OKButton" Content="OK" HorizontalAlignment="Left" Height="22" Margin="357,141,0,0" VerticalAlignment="Top" Width="54" Click="OKButton_Click"/>
-        <DatePicker x:Name="Ver14_DatePicker" HorizontalAlignment="Left" Margin="77,65,0,0" VerticalAlignment="Top"/>
-        <TextBlock x:Name="Ver14_Date" Text="Date:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.109,0.267" Height="26" Width="69" FontSize="18" Margin="19,65,0,0"/>
-        <TextBlock x:Name="Ver14_Time" Text="Time:" HorizontalAlignment="Left" Margin="19,91,0,0" VerticalAlignment="Top"  Height="28" Width="53" FontSize="18"/>
-        <TextBox x:Name="Ver14_HoursBox" HorizontalAlignment="Left" Height="23" Margin="77,94,0,56" TextWrapping="Wrap" Text="" Width="30" FontSize="18"/>
-        <TextBlock x:Name="Ver14_Colon" Text=":" HorizontalAlignment="Left" Margin="112,91,0,0" VerticalAlignment="Top"  Height="28" Width="5" FontSize="18"/>
-        <TextBox x:Name="Ver14_MinutesBox" HorizontalAlignment="Left" Height="23" Margin="122,94,0,56" TextWrapping="Wrap" Text="" Width="30" FontSize="18"/>
+        <Label x:Name="SetStormStartDate" Content="Set storm start date" HorizontalAlignment="Left" Margin="5,1,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.382,-0.041" Height="61" Width="406" FontSize="36"/>
+        <Button x:Name="OKButton" Content="OK" HorizontalAlignment="Left" Height="22" Margin="350,119,0,0" VerticalAlignment="Top" Width="54" Click="OKButton_Click"/>
+        <DatePicker x:Name="Ver14_DatePicker" HorizontalAlignment="Left" Margin="72,56,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="Ver14_Date" Text="Date:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.109,0.267" Height="26" Width="69" FontSize="18" Margin="14,56,0,0"/>
+        <TextBlock x:Name="Ver14_Time" Text="Time:" HorizontalAlignment="Left" Margin="14,82,0,0" VerticalAlignment="Top"  Height="28" Width="53" FontSize="18"/>
+        <TextBox x:Name="Ver14_HoursBox" HorizontalAlignment="Left" Margin="72,85,0,50" TextWrapping="Wrap" Text="" Width="30" FontSize="18"/>
+        <TextBlock x:Name="Ver14_Colon" Text=":" HorizontalAlignment="Left" Margin="107,82,0,0" VerticalAlignment="Top"  Height="28" Width="5" FontSize="18"/>
+        <TextBox x:Name="Ver14_MinutesBox" HorizontalAlignment="Left" Height="23" Margin="117,85,0,50" TextWrapping="Wrap" Text="" Width="30" FontSize="18"/>
 
     </Grid>
 </Window>

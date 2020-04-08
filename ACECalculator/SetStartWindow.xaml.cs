@@ -44,8 +44,8 @@ namespace ACECalculator
 
                 // add the time
 
-                MnWindow.CurrentDateTime.AddHours(Convert.ToInt32(Ver14_HoursBox.Text));
-                MnWindow.CurrentDateTime.AddMinutes(Convert.ToInt32(Ver14_HoursBox.Text));
+                MnWindow.CurrentDateTime = MnWindow.CurrentDateTime.AddHours(Convert.ToInt32(Ver14_HoursBox.Text));
+                MnWindow.CurrentDateTime = MnWindow.CurrentDateTime.AddMinutes(Convert.ToInt32(Ver14_HoursBox.Text));
 
 
                 int addBackFactor = 0; 

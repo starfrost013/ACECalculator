@@ -127,7 +127,13 @@ namespace ACECalculator
             // loop through everything
             for (int i = 0; i < StormIntensities.Items.Count; i++)
             {
-                if (StormIntensities.SelectedIndex == i) // if it is greater than the selected index
+                //V1.4: new version - support deleting multiple items
+                if (StormIntensities.SelectedItems.Count > 1)
+                {
+                    DeleteMultipleItems(StormIntensities.SelectedItems); // delete multiple items v1.4 only
+                }
+
+                if (StormIntensities.SelectedIndex == i) // if it is the same as the selected index
                 {
                     s = StormIntensities.SelectedIndex;
                     StormIntensityNode sinTemp = (StormIntensityNode)StormIntensities.Items[i]; // cast...
@@ -149,6 +155,33 @@ namespace ACECalculator
                     StormIntensities.Items.Refresh();
                 }
 
+            }
+        }
+
+        private void DeleteMultipleItems(System.Collections.IList ItemsToRemove)
+        {
+            //v1.4 only
+            double tempACE = 0;
+
+            for (int i = 0; i < ItemsToRemove.Count - 1; i++)
+            {
+                StormIntensityNode SNode_ToBeDeleted = (StormIntensityNode)ItemsToRemove[i];
+
+                StormIntensities.Items.Remove(SNode_ToBeDeleted);
+
+                for (int j = 0; j < StormIntensities.Items.Count - 1; j++)
+                {
+                    if (j > i)
+                    {
+                        StormIntensityNode SNode_Change = (StormIntensityNode)StormIntensities.Items[j]; // the node to change
+                        SNode_Change.Total -= tempACE;
+
+                        if (SNode_Change.DateTime.Date != new DateTime(0001, 1, 1))
+                        {
+                            SNode_Change.DateTime = SNode_Change.DateTime.AddHours(-6); // yeah
+                        }
+                    }
+                }
             }
         }
         
@@ -220,6 +253,7 @@ namespace ACECalculator
             if (Keyboard.IsKeyDown(Key.Enter))
             {
                 AddPoint();
+                EnterKt.Text = ""; // v1.4: autoclear for usability.
             }
         }
 

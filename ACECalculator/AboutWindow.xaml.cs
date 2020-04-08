@@ -26,7 +26,7 @@ namespace ACECalculator
             InitializeComponent();
             Assembly Assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo FileVersion = FileVersionInfo.GetVersionInfo(Assembly.Location); // get this program's location
-            Version.Content = $"Version {FileVersion.FileVersion}";
+            Version.Text = $"Version {FileVersion.FileVersion}";
         }
 
         private void OKButton_Click(object sender, RoutedEventArgs e)
@@ -36,7 +36,7 @@ namespace ACECalculator
 
         private void Version_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Version.Content = "free! - coming soon";
+            Version.Text = "free! - coming soon";
         }
 
         // new in v1.4: actually make this work - 2020-04-08
