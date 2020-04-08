@@ -51,43 +51,44 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
+    <ApplicationDefinition Include="Core\App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DeletePoint.cs" />
-    <Compile Include="EditWindow.xaml.cs">
+    <Compile Include="Misc\DeletePoint.cs" />
+    <Compile Include="Edit\EditWindow.xaml.cs">
       <DependentUpon>EditWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SetStartWindow.xaml.cs">
+    <Compile Include="Misc\Export.Timeline.cs" />
+    <Compile Include="SetStart\SetStartWindow.xaml.cs">
       <DependentUpon>SetStartWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="StormIntensityNode.cs" />
-    <Page Include="AboutWindow.xaml">
+    <Compile Include="Core\StormIntensityNode.cs" />
+    <Page Include="About\AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Core\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AboutWindow.xaml.cs">
+    <Compile Include="About\AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="App.xaml.cs">
+    <Compile Include="Core\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="HelperFunctions.cs" />
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Misc\HelperFunctions.cs" />
+    <Compile Include="Core\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="EditWindow.xaml">
+    <Page Include="Edit\EditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SetStartWindow.xaml">
+    <Page Include="SetStart\SetStartWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -116,7 +117,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="Core\App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

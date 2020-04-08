@@ -32,6 +32,7 @@
         <Menu x:Name="MainMenu" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="405">
             <MenuItem x:Name="FileMenu" Header="File" Height="23">
                 <MenuItem x:Name="FileMenu_Export" Header="Export to text file" Click="FileMenu_Export_Click"></MenuItem>
+                <!--<MenuItem x:Name="FileMenu_Export_Timeline" Header="Export to EasyTimeline format" Click="FileMenu_Export_Timeline_Click"></MenuItem>-->
                 <Separator/>
                 <!-- Exits the application -->
                 <MenuItem x:Name="FileMenu_Exit" Header="Exit" Click="FileMenu_Exit_Click"></MenuItem>
