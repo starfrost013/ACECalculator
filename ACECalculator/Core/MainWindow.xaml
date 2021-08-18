@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ACECalculator"
         mc:Ignorable="d"
-        Title="Cosmo's ACE Calculator" Height="589.174" Width="412.629">
+        Title="starfrost's ACE Calculator" Height="589.174" Width="412.629">
     <Grid>
         <TextBlock x:Name="NameLabel" Text="ACE Calculator" HorizontalAlignment="Left" Height="52" Margin="15,23,0,0" VerticalAlignment="Top" Width="241" FontSize="36"/>
         <TextBlock x:Name="ItCalculatesAce" Text="It calculates ACE!" HorizontalAlignment="Left" Height="23" Margin="15,65,0,0" VerticalAlignment="Top" Width="177" FontStyle="Italic" FontSize="18" MouseDown="ItCalculatesAce_MouseDown"/>
@@ -14,7 +14,7 @@
         <ListView x:Name="StormIntensities" HorizontalAlignment="Left" Height="331" Margin="15,181,0,0" VerticalAlignment="Top" Width="363">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn x:Name="StormIntensities_DateTime" Header="Date/Time" Width="125" DisplayMemberBinding="{Binding DateTime}"/>
+                    <GridViewColumn x:Name="StormIntensities_DateTime" Header="Date" Width="125" DisplayMemberBinding="{Binding DateTime}"/>
                     <GridViewColumn x:Name="StormIntensities_Intensity" Header="Intensity" Width="50" DisplayMemberBinding="{Binding Intensity}"/>
                     <GridViewColumn x:Name="StormIntensities_ThisPeriod" Header="ACE for this period" Width="120" DisplayMemberBinding="{Binding ACE}"/>
                     <GridViewColumn x:Name="StormIntensities_Total" Header="Total ACE" Width="61" DisplayMemberBinding="{Binding Total}"/>
@@ -59,7 +59,7 @@
                 <MenuItem x:Name="HelpMenu_About" Header="About ACE Calculator" Click="HelpMenu_About_Click"></MenuItem>
             </MenuItem>
         </Menu>
-        <TextBlock x:Name="ByCosmoForHHW" Text="By Cosmo for HHW" HorizontalAlignment="Left" Height="18" Margin="277,518,0,0" VerticalAlignment="Top" Width="101" FontStyle="Italic"/>
+        <TextBlock x:Name="ByCosmoForHHW" Text="By starfrost for HHW" Height="18" Margin="0,517,27,0" VerticalAlignment="Top" Width="110" FontStyle="Italic" HorizontalAlignment="Right"/>
 
 
     </Grid>

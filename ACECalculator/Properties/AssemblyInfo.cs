@@ -8,11 +8,11 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("ACECalculator")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Accumulated Cyclone Energy calculator for tropical cyclones")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("starfrost")]
 [assembly: AssemblyProduct("ACECalculator")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyCopyright("Copyright © 2019-2021 starfrost")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -51,5 +51,6 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.4.243.0")]
-[assembly: AssemblyFileVersion("1.4.243.0")]
+[assembly: AssemblyVersion("1.4.252.21230")]
+[assembly: AssemblyFileVersion("1.4.252.21230")]
+[assembly: AssemblyInformationalVersion("1.4.1")] // Aug 18 2021

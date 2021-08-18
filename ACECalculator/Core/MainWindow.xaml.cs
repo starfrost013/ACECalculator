@@ -19,7 +19,13 @@ using System.Windows.Shapes;
 namespace ACECalculator
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// starfrost's ACE Calculator
+    /// 
+    /// Originally created October 9, 2019 (v1.4.1: updated August 18, 2021 to update credits)
+    /// 
+    /// This is a very poorly written mess. One day I'll rewrite it.
+    /// 
+    /// Don't use this code as a tutorial!
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -46,7 +52,7 @@ namespace ACECalculator
 
         private void ItCalculatesAce_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ItCalculatesAce.Text = "You're banned!"; 
+            ItCalculatesAce.Text = "gulag"; 
         }
 
         private void AddStorm_Click(object sender, RoutedEventArgs e)
