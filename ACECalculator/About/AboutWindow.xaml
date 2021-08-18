@@ -12,10 +12,10 @@
         <TextBlock x:Name="Version" Text="Version" HorizontalAlignment="Left" Height="32" Margin="10,60,0,0" VerticalAlignment="Top" Width="356" FontSize="20" MouseDown="Version_MouseDown"/>
         <TextBlock x:Name="Copyright" HorizontalAlignment="Left" Height="29" Margin="10,92,0,0" TextWrapping="Wrap" Text="© 2019-2021 starfrost (Cosmo224). Created for HHW by starfrost. Open-source software." VerticalAlignment="Top" Width="710" FontSize="18"/>
         <TextBlock x:Name="HHW" HorizontalAlignment="Left" Height="19" Margin="10,121,0,0" VerticalAlignment="Top" Width="260">
-            <Hyperlink NavigateUri="http://hypotheticalhurricanes.fandom.com" RequestNavigate="StartWebsite">http://www.hypotheticalhurricanes.fandom.com</Hyperlink>
+            <Hyperlink NavigateUri="https://hypotheticalhurricanes.fandom.com" RequestNavigate="StartWebsite">Hypothetical Hurricanes Wiki</Hyperlink>
         </TextBlock>
         <TextBlock x:Name="AboutWindow_StarfrostDotNet" HorizontalAlignment="Left" Height="19" Margin="10,141,0,0" VerticalAlignment="Top" Width="260">
-            <Hyperlink NavigateUri="http://hypotheticalhurricanes.fandom.com" RequestNavigate="StartWebsite">My website: http://www.starfrost.net</Hyperlink>
+            <Hyperlink NavigateUri="https://starfrost.net" RequestNavigate="StartWebsite">My website: http://www.starfrost.net</Hyperlink>
         </TextBlock>
         <Button x:Name="OKButton" Content="OK" HorizontalAlignment="Left" Margin="671,139,0,0" FontSize="18" VerticalAlignment="Top" Width="88" Click="OKButton_Click"/>
 
