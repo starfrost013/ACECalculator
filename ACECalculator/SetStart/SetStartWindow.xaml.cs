@@ -19,7 +19,7 @@ namespace ACECalculator
     /// </summary>
     public partial class SetStartWindow : Window
     {
-
+        // HORRIBLE
         MainWindow MnWindow;
 
         public SetStartWindow(MainWindow MainWindow)
@@ -34,18 +34,18 @@ namespace ACECalculator
             {
                 // V1.4: If it ain't broke, don't fix it! (build 222)
                 
-                if (Ver14_DatePicker.SelectedDate == null)
+                if (datePicker.SelectedDate == null)
                 {
                     MessageBox.Show("Error: You must select a date!", "ACE Calculator", MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
 
-                MnWindow.CurrentDateTime = (DateTime)Ver14_DatePicker.SelectedDate;
+                MnWindow.CurrentDateTime = (DateTime)datePicker.SelectedDate;
 
                 // add the time
 
-                MnWindow.CurrentDateTime = MnWindow.CurrentDateTime.AddHours(Convert.ToInt32(Ver14_HoursBox.Text));
-                MnWindow.CurrentDateTime = MnWindow.CurrentDateTime.AddMinutes(Convert.ToInt32(Ver14_HoursBox.Text));
+                MnWindow.CurrentDateTime = MnWindow.CurrentDateTime.AddHours(Convert.ToInt32(hoursBox.Text));
+                MnWindow.CurrentDateTime = MnWindow.CurrentDateTime.AddMinutes(Convert.ToInt32(hoursBox.Text));
 
 
                 int addBackFactor = 0; 

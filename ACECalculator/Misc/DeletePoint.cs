@@ -1,73 +1,46 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ACECalculator
 {
     public partial class MainWindow
     {
-        private void DeleteSingleItem()
+        private void DeleteSelectedItems()
         {
-            int s = 0;
+            Int32 numRemoved = 0;
+            Int32 lastDeletedItem = 0;
+
             double tempACE = 0;
-            bool deleted = false;
 
             // loop through everything
-            for (int i = 0; i < StormIntensities.Items.Count; i++)
+            for (int i = 0; i < StormIntensities.SelectedItems.Count; i++)
             {
                 //V1.4: new version - support deleting multiple items
 
-                if (StormIntensities.SelectedIndex == i) // if it is the same as the selected index
+                StormIntensityNode sinTemp = (StormIntensityNode)StormIntensities.SelectedItems[i]; // cast...
+                Int32 index = StormIntensities.Items.IndexOf(sinTemp);
+
+                if (index > lastDeletedItem)
+                    lastDeletedItem = index;
+
+                tempACE += sinTemp.ACE;
+                StormIntensities.Items.Remove(sinTemp); // remove the item at the selected index. Yay.
+                i--;
+                numRemoved++;
+            }
+
+            for (int i = 0; i < StormIntensities.Items.Count; i++)
+            {
+                StormIntensityNode sin = (StormIntensityNode)StormIntensities.Items[i];
+
+                if (i > lastDeletedItem)
                 {
-                    s = StormIntensities.SelectedIndex;
-                    StormIntensityNode sinTemp = (StormIntensityNode)StormIntensities.Items[i]; // cast...
-                    tempACE = sinTemp.ACE;
-                    deleted = true;
-                    StormIntensities.Items.RemoveAt(i); // remove the item at the selected index. Yay.
+                    sin.Total -= tempACE;
+                    sin.DateTime = sin.DateTime.AddHours((-6 * numRemoved)); // yeah
                 }
 
-                if (deleted == true)
-                {
-                    if (i > s)
-                    {
-                        StormIntensityNode sin = (StormIntensityNode)StormIntensities.Items[i];
-
-                        sin.Total -= tempACE;
-                        sin.DateTime = sin.DateTime.AddHours(-6); // yeah
-                    }
-                }
             }
 
             StormIntensities.Items.Refresh();
-        }
-
-        private void DeleteMultipleItems(System.Collections.IList ItemsToRemove)
-        {
-            //v1.4 only
-            double tempACE = 0;
-
-            for (int i = 0; i < ItemsToRemove.Count - 1; i++)
-            {
-                StormIntensityNode SNode_ToBeDeleted = (StormIntensityNode)ItemsToRemove[i];
-
-                StormIntensities.Items.Remove(SNode_ToBeDeleted);
-
-                for (int j = 0; j < StormIntensities.Items.Count - 1; j++)
-                {
-                    if (j > i)
-                    {
-                        StormIntensityNode SNode_Change = (StormIntensityNode)StormIntensities.Items[j]; // the node to change
-                        SNode_Change.Total -= tempACE;
-
-                        if (SNode_Change.DateTime.Date != new DateTime(0001, 1, 1))
-                        {
-                            SNode_Change.DateTime = SNode_Change.DateTime.AddHours(-6); // yeah
-                        }
-                    }
-                }
-            }
         }
     }
 }

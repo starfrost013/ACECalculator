@@ -28,7 +28,7 @@
             </ListView.ContextMenu>
         </ListView>
         <TextBlock x:Name="EnterStormIntensityLabel" Text="Enter storm intensity (in kt)..." HorizontalAlignment="Left" Height="26" Margin="15,93,0,0" VerticalAlignment="Top" Width="177" FontStyle="Italic"/>
-        <TextBlock x:Name="StormIntensitiesLabel" Text="Storm intensities:" HorizontalAlignment="Left" Height="21" Margin="15,150,0,0" VerticalAlignment="Top" Width="291" FontSize="16" FontStyle="Italic"/>
+        <TextBlock x:Name="StormIntensitiesLabel" Text="Storm data:" HorizontalAlignment="Left" Height="21" Margin="15,150,0,0" VerticalAlignment="Top" Width="291" FontSize="16" FontStyle="Italic"/>
         <Button x:Name="AddStorm" Content="Add" HorizontalAlignment="Left" Height="21" Margin="162,119,0,0" VerticalAlignment="Top" Width="52" Click="AddStorm_Click"/>
         <Menu x:Name="MainMenu" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="405">
             <MenuItem x:Name="FileMenu" Header="File" Height="23">
@@ -59,8 +59,6 @@
                 <MenuItem x:Name="HelpMenu_About" Header="About ACE Calculator" Click="HelpMenu_About_Click"></MenuItem>
             </MenuItem>
         </Menu>
-        <TextBlock x:Name="ByCosmoForHHW" Text="By starfrost for HHW" Height="18" Margin="0,517,27,0" VerticalAlignment="Top" Width="110" FontStyle="Italic" HorizontalAlignment="Right"/>
-
-
+        <TextBlock x:Name="ByStarfrost" Text="By starfrost" Height="18" Margin="0,517,35,0" VerticalAlignment="Top" Width="58" FontStyle="Italic" HorizontalAlignment="Right" PreviewMouseDown="ByStarfrost_Click"/>
     </Grid>
 </Window>

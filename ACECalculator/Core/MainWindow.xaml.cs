@@ -33,26 +33,36 @@ namespace ACECalculator
 
         //public int AllowSub34Kt { get; set; } // Maybe later.
 
-        public int IntensityMeasure { get; set; } // 0 = knots, 1 = mph
+        public enum IntensityMeasureType
+        { 
+            Knots = 0,
+            Mph = 1,
+        }
+
+        public IntensityMeasureType IntensityMeasure { get; set; } // 0 = knots, 1 = mph
 
         public double TotalACE { get; set; } // yes
 
-        public int SinglePoint { get; set; } // Single Point Mode enabled
+        public bool SinglePoint { get; set; } // Single Point Mode enabled
 
         public bool DateTimeOn { get; set; }
 
         public DateTime CurrentDateTime { get; set; }
+
+        private Int32 easterEggClicks;
+
         public MainWindow()
         {
             InitializeComponent();
             IntensityList = new List<StormIntensityNode>();
             DateTimeOn = true; // bypasses checks
+            CurrentDateTime = DateTime.Now;
             SetDateTimeVisibility(false);
         }
 
         private void ItCalculatesAce_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ItCalculatesAce.Text = "gulag"; 
+            ItCalculatesAce.Text = "ã"; 
         }
 
         private void AddStorm_Click(object sender, RoutedEventArgs e)
@@ -68,32 +78,30 @@ namespace ACECalculator
         private void StormMenu_IntensityKt_Click(object sender, RoutedEventArgs e)
         {
             // return if already active
-            if (IntensityMeasure == 0)
+            if (IntensityMeasure == IntensityMeasureType.Knots)
             {
                 StormMenu_IntensityKt.IsChecked = true;
                 return;
             }
 
             StormMenu_IntensityMph.IsChecked = false;
-            EnterStormIntensityLabel.Text = "Enter storm intensity (in kt)..."; // change the content of the enter intensity label to reflect the new measurement of wind speed.
+            EnterStormIntensityLabel.Text = "Enter storm intensity (in knots)..."; // change the content of the enter intensity label to reflect the new measurement of wind speed.
             // convert everything
 
             foreach (StormIntensityNode sin in StormIntensities.Items)
             {
-                sin.Intensity = sin.Intensity / 1.151;
+                sin.Intensity /= 1.151;
                 sin.Intensity = RoundNearest(sin.Intensity, 5); // round it.
             }
             StormIntensities.Items.Refresh();
 
-            IntensityMeasure = 0;
-            
-
+            IntensityMeasure = IntensityMeasureType.Knots;
         }
 
         private void StormMenu_IntensityMph_Click(object sender, RoutedEventArgs e)
         {
             // return if already active
-            if (IntensityMeasure == 1)
+            if (IntensityMeasure == IntensityMeasureType.Mph)
             {
                 StormMenu_IntensityKt.IsChecked = true;
                 return;
@@ -104,12 +112,12 @@ namespace ACECalculator
 
             foreach (StormIntensityNode sin in StormIntensities.Items)
             {
-                sin.Intensity = sin.Intensity * 1.151;
+                sin.Intensity *= 1.151;
                 sin.Intensity = RoundNearest(sin.Intensity, 5); // round it to the nearest 5mph/5kt
             }
 
             StormIntensities.Items.Refresh();
-            IntensityMeasure = 1;
+            IntensityMeasure = IntensityMeasureType.Mph;
 
         }
 
@@ -126,14 +134,7 @@ namespace ACECalculator
                 return; // don't do anything
             }
 
-            if (StormIntensities.SelectedItems.Count > 1)
-            {
-                DeleteMultipleItems(StormIntensities.SelectedItems); // delete multiple items v1.4 only
-            }
-            else
-            {
-                DeleteSingleItem(); 
-            }
+            DeleteSelectedItems();
         }
 
         private void HelpMenu_About_Click(object sender, RoutedEventArgs e)
@@ -159,27 +160,22 @@ namespace ACECalculator
                 return;
             }
 
-            EditStorm EditStorm = new EditStorm(this);
+            EditStorm EditStorm = new EditStorm();
             EditStorm.ShowDialog();
         }
 
         private void SinglePointMode_Click(object sender, RoutedEventArgs e)
         {
-            if (SinglePointMode.IsChecked)
-            {
-                SinglePoint = 1;
-            }
-            else
-            {
-                SinglePoint = 0;
-            }
+            SinglePoint = SinglePointMode.IsChecked;
         }
 
         private void StormMenu_CopyToClipboard_Click(object sender, RoutedEventArgs e)
         {
+            if (StormIntensities.Items.Count == 0)
+                return;
+
             StormIntensityNode temp = (StormIntensityNode)StormIntensities.Items[StormIntensities.Items.Count - 1]; // get the last item.
             Clipboard.SetText(temp.Total.ToString()); // set the clipboard text to the current total ACE
-            temp = null; // destroy
         }
 
         // Opens the set start date window.
@@ -200,7 +196,7 @@ namespace ACECalculator
             if (Keyboard.IsKeyDown(Key.Enter))
             {
                 AddPoint();
-                EnterKt.Text = ""; // v1.4: autoclear for usability.
+                EnterKt.Text = string.Empty;
             }
         }
 
@@ -208,55 +204,73 @@ namespace ACECalculator
         {
             try
             {
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.Title = "Enter path for export";
-                saveFileDialog.DefaultExt = ".txt";
-                saveFileDialog.Filter = "Text files (*.txt)|*.txt";
+                SaveFileDialog saveFileDialog = new SaveFileDialog
+                {
+                    Title = "Enter path for export",
+                    DefaultExt = ".txt",
+                    Filter = "Text files (*.txt)|*.txt"
+                };
+
                 saveFileDialog.ShowDialog();
 
-                List<string> Lines = new List<string>();
+                List<string> lines = new List<string>();
 
                 foreach (StormIntensityNode sin in StormIntensities.Items)
                 {
                     // write.
                     switch (IntensityMeasure)
                     {
-                        case 0: // The user selected knots.
-                            Lines.Add($"{sin.DateTime} {sin.Intensity.ToString()} KT - ACE: {sin.ACE} Total: {sin.Total}");
+                        case IntensityMeasureType.Knots: // The user selected knots.
+                            lines.Add($"{sin.DateTime} {sin.Intensity} KT - ACE: {sin.ACE} Total: {sin.Total}");
                             continue;
-                        case 1: // The user selected mph.
-                            Lines.Add($"{sin.DateTime} {sin.Intensity.ToString()} MPH - ACE: {sin.ACE} Total: {sin.Total}");
+                        case IntensityMeasureType.Mph: // The user selected mph.
+                            lines.Add($"{sin.DateTime} {sin.Intensity} MPH - ACE: {sin.ACE} Total: {sin.Total}");
                             continue;
                     }
                 }
 
-                string[] Lines_Array = Lines.ToArray();
-                Clipboard.SetText(new StringBuilder().Append(Lines_Array).ToString());
+                string[] linesArray = lines.ToArray();
+                Clipboard.SetText(new StringBuilder().Append(linesArray).ToString());
 
-                File.WriteAllLines(saveFileDialog.FileName, Lines_Array);
+                File.WriteAllLines(saveFileDialog.FileName, linesArray);
             }
-            catch (IOException)
+            catch (Exception ex)
             {
-                MessageBox.Show("An error occurred when writing to the file.", "ACE Calculator", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-            catch (UnauthorizedAccessException)
-            {
-                MessageBox.Show("The OS denied access to the file.", "ACE Calculator", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("An error occurred when writing to the file: \n\n" + ex, "ACE Calculator", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
         }
 
         private void StormIntensities_RightClick_Delete_Click(object sender, RoutedEventArgs e)
         {
-            DeleteSingleItem();
+            DeleteSelectedItems();
         }
 
         private void StormIntensities_RightClick_Edit_Click(object sender, RoutedEventArgs e)
         {
-            EditStorm EStorm = new EditStorm(this); // my old code was so ugly lol
+            // my old code was so ugly lol
+            EditStorm EStorm = new EditStorm(); 
             EStorm.Owner = this;
             EStorm.Show(); 
+        }
+
+        private void ByStarfrost_Click(object sender, RoutedEventArgs e)
+        {
+            easterEggClicks++;
+
+            if (easterEggClicks == 10)
+            {
+                ByStarfrost.TextWrapping = TextWrapping.Wrap;   
+                ByStarfrost.Text = "+☺6¶♂,▓TÈ-♦Û¶─N8‼4*┬♣•♦☺♠1♠194D411494♀123119321☻198498♦6\"5ð4@lj8/9$♂85#BfY@X6Û374ß                   ☻46 segmentation fault - core dumped\r\n";
+                ByStarfrost.Height += 200;
+                ByStarfrost.Width += 250;
+                ByStarfrost.Margin = new Thickness(ByStarfrost.Margin.Left - 200,
+                ByStarfrost.Margin.Top,
+                ByStarfrost.Margin.Right,
+                ByStarfrost.Margin.Bottom);
+
+                Height += 50;
+            }
         }
     }
 }
